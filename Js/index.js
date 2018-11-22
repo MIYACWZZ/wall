@@ -1,28 +1,28 @@
 
 $(function () {
 
-	$( '#main' ).height( $( window ).height() - $( '#top' ).height() - 45);
-
-	var paper = $( '.paper' );
-	var FW = $( window ).width();
-	var FH = $( '#main' ).height();
-	for (var i = 0; i < paper.length; i++) {
-		var obj = paper.eq(i);
-		obj.css( {
-			left : parseInt(Math.random() * (FW - obj.width())) + 'px',
-			top : parseInt(Math.random() * (FH - obj.height())) + 'px'
-		} );
-		drag(obj, $( 'dt', obj ));
-	}
-
-	paper.click( function () {
-		$( this ).css( 'z-index', 1 ).siblings().css( 'z-index', 0 );
-	} );
-
-	$( '.close' ).click( function () {
-		$( this ).parents( 'dl' ).fadeOut('slow');
-		return false;
-	} );
+	// $( '#main' ).height( $( window ).height() - $( '#top' ).height() - 45);
+	//
+	// var paper = $( '.paper' );
+	// var FW = $( window ).width();
+	// var FH = $( '#main' ).height();
+	// for (var i = 0; i < paper.length; i++) {
+	// 	var obj = paper.eq(i);
+	// 	obj.css( {
+	// 		left : parseInt(Math.random() * (FW - obj.width())) + 'px',
+	// 		top : parseInt(Math.random() * (FH - obj.height())) + 'px'
+	// 	} );
+	// 	drag(obj, $( 'dt', obj ));
+	// }
+	//
+	// paper.click( function () {
+	// 	$( this ).css( 'z-index', 1 ).siblings().css( 'z-index', 0 );
+	// } );
+	//
+	// $( '.close' ).click( function () {
+	// 	$( this ).parents( 'dl' ).fadeOut('slow');
+	// 	return false;
+	// } );
 
 	/*$( '#send' ).click( function () {
 		$( '<div id="windowBG"></div>' ).css( {
@@ -58,26 +58,26 @@ $(function () {
 
 
 
-	$( 'textarea[name=content]' ).keyup( function () {
-		var content = $(this).val();
-		var lengths = check(content);  //调用check函数取得当前字数
-
-		//最大允许输入50个字
-		if (lengths[0] >= 50) {
-			$(this).val(content.substring(0, Math.ceil(lengths[1])));
-		}
-
-		var num = 50 - Math.ceil(lengths[0]);
-		var msg = num < 0 ? 0 : num;
-		//当前字数同步到显示提示
-		$( '#font-num' ).html( msg );
-	} );
-
-	$( '#phiz img' ).click( function () {
-		var phiz = '[' + $( this ).attr('alt') + ']';
-		var obj = $( 'textarea[name=content]' );
-		obj.val(obj.val() + phiz);
-	} );
+	// $( 'textarea[name=content]' ).keyup( function () {
+	// 	var content = $(this).val();
+	// 	var lengths = check(content);  //调用check函数取得当前字数
+	//
+	// 	//最大允许输入50个字
+	// 	if (lengths[0] >= 50) {
+	// 		$(this).val(content.substring(0, Math.ceil(lengths[1])));
+	// 	}
+	//
+	// 	var num = 50 - Math.ceil(lengths[0]);
+	// 	var msg = num < 0 ? 0 : num;
+	// 	//当前字数同步到显示提示
+	// 	$( '#font-num' ).html( msg );
+	// } );
+	//
+	// $( '#phiz img' ).click( function () {
+	// 	var phiz = '[' + $( this ).attr('alt') + ']';
+	// 	var obj = $( 'textarea[name=content]' );
+	// 	obj.val(obj.val() + phiz);
+	// } );
 
 });
 

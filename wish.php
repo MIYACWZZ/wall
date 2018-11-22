@@ -97,7 +97,7 @@
 			height: 150px;
 			border: 1px solid orange;
 			margin-left: 20px;
-			background-color: #E8DEFF;
+			background-color: #FFDFFF;
 		}
 
 		.name {
@@ -185,7 +185,7 @@
 	<div id='top'></div>
 	<div id="content">
 		<div class="c-top"></div>
-		<form action="index.php" method="post" id="myfrom">
+		<form action="add.php" method="post" id="myfrom">
 			<div class="c-content">
 				<div class="papercolor">
 					<div class="p-left">
@@ -197,7 +197,7 @@
 						<div class="color330" id="a3" style="background:#FFE3b8"></div>
 						<div class="color330" id="a4" style="background:#CEECFF"></div>
 						<div class="color330" id="a5" style="background:#E8DEFF"></div>
-						<input type="hidden" value="" name="idvalue" id="idvalue">
+						<input type="hidden" value="a1" name="idvalue" id="idvalue">
 					</div>
 				</div>
 				<div class="papercontent">
@@ -206,7 +206,7 @@
 							<span>输入你的祝福纸条内容:</span>
 						</div>
 						<div class="left-bottom">
-							<textarea cols="25" rows="8" id="textfont"></textarea>
+							<textarea cols="25" rows="8" id="textfont" name="content" required placeholder="请输入！！"></textarea>
 						</div>
 					</div>
 					<div class="right">
@@ -225,7 +225,7 @@
 						<span>您的署名:</span>
 					</div>
 					<div class="name-right">
-						<input id="nameright" type="text" name="name" value="">
+						<input id="nameright" type="text" name="name" value="" required placeholder="请输入！！">
 					</div>
 				</div>
 				<div class="code">
@@ -233,7 +233,7 @@
 						<span>验证码:</span>
 					</div>
 					<div class="code-content">
-						<input id="codeone" type="text" name="recode" value=""><span></span>
+						<input id="codeone" type="text" name="recode" value="" required><span></span>
 					</div>
 					<div class="code-right">
 						<input id="codetwo" type="text" name="code" value="<?php echo mt_rand(1000,9999); ?>" readonly>
@@ -241,7 +241,7 @@
 				</div>
 				<!--<div class="submit"><button type="submit" style="width:174px;height:38px"></button></div>-->
 				<input style="BORDER-RIGHT: #f33b78 1px outset; BORDER-TOP: #f33b78 1px outset; FONT-WEIGHT: bold; BORDER-LEFT: #f33b78 1px outset; COLOR: #ffffff; BORDER-BOTTOM: #f33b78 1px outset; BACKGROUND-COLOR: #70ae0b;margin-left: 225px" type="submit"
-				  value="→ 开始贴许愿小纸条 ←" name="submit">
+				  value="→ 开始贴许愿小纸条 ←" name="submit" id="send2">
 
 				<input class="input" type="button" name="Submit2" value="返回">
 			</div>
@@ -261,6 +261,7 @@
 			var value = $(this).css("background-color");
 			var idvalue = $(this).attr("id");
 			console.log(idvalue);
+			//将隐藏buttom的值变成颜色的id
 			$("#idvalue").attr("value", idvalue);
 			$(".right-bottom").css("background-color", value);
 		})
@@ -278,15 +279,21 @@
 			document.getElementById("name").innerText = "署名: " + nameright.value;
 		}
 
-		//在填写完毕验证码之后验证是否一致
+
 		var codeone = document.getElementById('codeone');
 		var codetwo = document.getElementById('codetwo');
 		//表单时区焦点事件
 		codeone.onblur = function() {
 			//验证两次验证码是否一致
 			if (codeone.value != codetwo.value) {
-				this.nextSibling.innerHTML = '验证码不一致!'
+				this.nextSibling.innerHTML = '验证码不一致!';
 				this.nextSibling.style.color = 'red';
+				//设置不允许点击提交按钮
+				$('#send2').attr('disabled', true);
+			}
+			else {
+				this.nextSibling.innerHTML = '';
+				$('#send2').attr('disabled', false);
 			}
 		}
 

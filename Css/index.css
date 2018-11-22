@@ -183,9 +183,9 @@ input[type="text"]:focus{
 	background: url(../Images/close.png) no-repeat;
 	float: right;
 }
-.paper .bottom .close:hover {
+/* .paper .bottom .close:hover {
 	background-position: -43px 0;
-}
+} */
 .a1 dt {
 	background: url(../Images/a1_1.gif);
 }

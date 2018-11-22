@@ -6,23 +6,36 @@
 	<link rel="stylesheet" href="./Css/index.css" />
 	<script type="text/javascript" src='./Js/jquery-1.7.2.min.js'></script>
 	<script type="text/javascript" src='./Js/index.js'></script>
+	<!--点击删除按钮时，跳转到删除逻辑页面del.php  -->
+	<script type="text/javascript">
+	function del(key){
+		if(confirm("确定删除吗?")){
+			location.href="del.php?del="+key;
+		}else {
+			location.href="index.php";
+		}
+	}
+</script>
 </head>
+
+<!-- 初始化许愿贴 -->
 <?php
+//设置编码格式
 header('content-type:text/html;charset=utf-8');
 //创建数据库连接
 $connect=mysqli_connect('localhost','root','','wall');
 //设置获取的编码方式为utf8
 mysqli_query($connect,'set names utf8');
-//sql语句
+//获取许愿贴的sql语句
 $sql='SELECT * FROM sticker';
 //取结果集
 $result=mysqli_query($connect,$sql);
-//获取为一个关联数组
+//获取关联数组
 $data=mysqli_fetch_all($result,MYSQLI_ASSOC);
- // var_dump($data);
+// var_dump($data);
 //关闭数据库资源
 mysqli_close($connect);
- ?>
+?>
 
 <body>
 	<div id='top'>
@@ -45,62 +58,13 @@ mysqli_close($connect);
 			<dd class='content'><?php echo $val['content']; ?></dd>
 			<dd class='bottom'>
 				<span class='time'><?php echo $val['create_time']; ?></span>
-				<a href="" class='close'></a>
+				<a href="#" onclick="del(<?php echo $val['id']; ?>)" class='close'></a>
 			</dd>
 		</dl>
 		<?php
 		endforeach;
 		endif;
 		?>
-
-		<!-- <dl class='paper a2'>
-			<dt>
-				<span class='username'>慕课网</span>
-				<span class='num'>No.00001</span>
-			</dt>
-			<dd class='content'>大家要好好学习PHP语言哦！</dd>
-			<dd class='bottom'>
-				<span class='time'>今天08:30</span>
-				<a href="" class='close'></a>
-			</dd>
-		</dl> -->
-
-		<!-- <dl class='paper a3'>
-			<dt>
-				<span class='username'>慕课网</span>
-				<span class='num'>No.00001</span>
-			</dt>
-			<dd class='content'>大家要好好学习PHP语言哦！</dd>
-			<dd class='bottom'>
-				<span class='time'>今天08:30</span>
-				<a href="" class='close'></a>
-			</dd>
-		</dl> -->
-
-		<!-- <dl class='paper a4'>
-			<dt>
-				<span class='username'>慕课网</span>
-				<span class='num'>No.00001</span>
-			</dt>
-			<dd class='content'>大家要好好学习PHP语言哦！</dd>
-			<dd class='bottom'>
-				<span class='time'>今天08:30</span>
-				<a href="" class='close'></a>
-			</dd>
-		</dl> -->
-
-		<!-- <dl class='paper a5'>
-			<dt>
-				<span class='username'>慕课网</span>
-				<span class='num'>No.00001</span>
-			</dt>
-			<dd class='content'>大家要好好学习PHP语言哦！</dd>
-			<dd class='bottom'>
-				<span class='time'>今天08:30</span>
-				<a href="" class='close'></a>
-			</dd>
-		</dl> -->
-
 	</div>
 
 <!--[if IE 6]>
